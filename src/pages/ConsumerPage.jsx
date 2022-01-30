@@ -12,7 +12,6 @@ export default function ConsumerPage({ provider, contract }) {
   const [verified, setVerified] = React.useState(false);
   const [resultMessage, setResultMessage] = React.useState('');
   const [clickedVerify, setClickedVerify] = React.useState(false);
-  const [fileUrl, setFileUrl] = React.useState(null);
 
   useEffect(() => {
     if (!contract) {
@@ -43,7 +42,6 @@ export default function ConsumerPage({ provider, contract }) {
   const onVerify = () => {
     if (!medicineHash) {
       setClickedVerify(false);
-      setFileUrl(null);
       alert('Please Enter medicine Hash');
       return;
     }
@@ -54,20 +52,17 @@ export default function ConsumerPage({ provider, contract }) {
           ? getFileData(chainData.fileUrl).then((data) => {
               setClickedVerify(true);
               const fileHash = getFileHash(data);
-              setFileUrl(chainData.fileUrl);
               if (chainData.hash === fileHash) {
                 setVerified(true);
-                setResultMessage('Signature Verified!');
+                setResultMessage('Success!');
               } else {
                 setVerified(false);
-                setResultMessage('Sign Verification Failed!');
-                console.log('Expected hash:%s Computed hash:%s', chainData.hash, fileHash)
+                setResultMessage('Failure!');
               }
             })
           : console.log('Token does not exist');
       })
       .catch((error) => {
-        setFileUrl(null);
         setClickedVerify(true);
         console.log(error);
         setVerified(false);
@@ -99,21 +94,6 @@ export default function ConsumerPage({ provider, contract }) {
               onChange={(e) => setMedicineHash(e.target.value)}
             />
           </div>
-          {fileUrl && (
-            <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">
-                File Url
-              </label>
-              <br></br>
-              <a
-                href={fileUrl}
-                target="_blank"
-                style={{ color: 'blue', textDecoration: 'underline' }}
-              >
-                {fileUrl}
-              </a>
-            </div>
-          )}
           <button
             className="mt-4 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             onClick={onVerify}

@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import abiJson from "./contracts/NFTCollection/abi.json";
-import addressJson from "./contracts/NFTCollection/address.json";
+import abiJson from './contracts/NFTCollection/abi.json';
+import addressJson from './contracts/NFTCollection/address.json';
 
-import Header from "./components/Header.jsx";
-import ConnectWithMetaMaskButton from "./components/ConnectWithMetaMaskButton";
+import Header from './components/Header.jsx';
+import ConnectWithMetaMaskButton from './components/ConnectWithMetaMaskButton';
 
-import Home from "./pages/Home.jsx";
-import Mint from "./pages/Mint.jsx";
+import Home from './pages/Home.jsx';
+import Mint from './pages/Mint.jsx';
+import ConsumerPage from './pages/ConsumerPage.jsx';
 
 import {
   checkIfWalletIsConnected,
   getSignedContract,
   updateProviderAndContract,
-} from "./utils/common.js";
+} from './utils/common.js';
 
-import "./App.css";
+import './App.css';
 
 export default function App() {
-  const [contractOwner, setContractOwner] = useState("");
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [contractOwner, setContractOwner] = useState('');
+  const [currentAccount, setCurrentAccount] = useState('');
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
 
@@ -53,7 +54,7 @@ export default function App() {
   };
 
   const isOwner =
-    contractOwner !== "" &&
+    contractOwner !== '' &&
     contractOwner.toLowerCase() === currentAccount.toLowerCase();
 
   const isMetamaskConnected = !!currentAccount;
@@ -69,6 +70,11 @@ export default function App() {
           />
         )}
         <Switch>
+          <Route path="/consumerPage">
+            <ConsumerPage
+              {...{ contractOwner, currentAccount, provider, contract }}
+            />
+          </Route>
           <Route path="/mint">
             <Mint {...{ contractOwner, currentAccount, provider, contract }} />
           </Route>

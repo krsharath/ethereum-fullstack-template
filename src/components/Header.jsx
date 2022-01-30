@@ -1,26 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header({ isOwner }) {
   return (
     <header className="text-gray-600 body-font">
       <div
         className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
-        style={{ justifyContent: "space-between" }}
+        style={{ justifyContent: 'space-between' }}
       >
         <nav className="flex flex-wrap items-center text-base">
           <Link
             to="/"
-            className="mr-5 hover:text-gray-900"
-            style={{ margin: "0" }}
+            className="ml-5 hover:text-gray-900"
+            style={{ margin: '0' }}
           >
-            Home
+            Consumer
           </Link>
-          {isOwner && (
-            <Link to="/mint" className="ml-5 mr-5 hover:text-gray-900">
-              Mint
-            </Link>
-          )}
+          <Link to="/mint" className="ml-5  hover:text-gray-900">
+            Manufacturer
+          </Link>
+          {/* <Link to="/consumerPage" className="ml-5 mr-5 hover:text-gray-900">
+            Consumer
+          </Link> */}
         </nav>
         <div>
           <p className="flex order-first lg:order-none title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
@@ -29,7 +30,7 @@ export default function Header({ isOwner }) {
               <img
                 src="https://www.dappcamp.xyz/dappcamp_logo.png"
                 alt="DappCamp logo"
-                style={{ height: "32px" }}
+                style={{ height: '32px' }}
               />
             </a>
           </p>
@@ -38,20 +39,27 @@ export default function Header({ isOwner }) {
         <nav className="flex flex-wrap items-center text-base">
           <Link
             to="/"
-            className="mr-5 hover:text-gray-900"
-            style={{ margin: "0", opacity: 0 }}
+            className="ml-5 mr-5 hover:text-gray-900"
+            style={{ opacity: 0 }}
           >
             Home
           </Link>
-          {isOwner && (
+          {true && (
             <Link
               to="/mint"
-              className="ml-5 mr-5 hover:text-gray-900"
-              style={{ margin: "0", opacity: 0 }}
+              className=" mr-5 hover:text-gray-900"
+              style={{ opacity: 0 }}
             >
-              Mint
+              Manufacturer
             </Link>
           )}
+          {/* <Link
+            to="/consumerPage"
+            className="mr-5 hover:text-gray-900"
+            style={{ opacity: 0 }}
+          >
+            Consumer
+          </Link> */}
         </nav>
       </div>
     </header>

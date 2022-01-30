@@ -2,6 +2,7 @@
   "name": "nft-v3",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@openzeppelin/contracts": "^4.4.2",
@@ -9,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "autoprefixer": "^9.8.8",
+    "buffer": "^6.0.3",
     "postcss": "^8.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
